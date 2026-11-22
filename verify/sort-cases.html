@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sort cases</title>
+<link rel="stylesheet" href="../assets/view.css">
+<style>
+	body { font: 16px/1.5 system-ui, sans-serif; margin: 2em auto; max-width: 48em; padding: 0 1em; }
+	table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
+	th, td { border: 1px solid #ccc; padding: .3em .6em; text-align: left; }
+	.result { font-weight: 600; }
+	.pass { color: #0a7a2f; }
+	.fail { color: #b00020; }
+</style>
+</head>
+<body>
+<h1>Sort cases</h1>
+<p>Runs the plugin's real <code>assets/view.js</code> on the cases in <code>sort-cases.json</code>, with the page
+language from <code>?lang=</code> (default en-US). Each table: sort the first column; the Expected column then reads
+1, 2, 3..., then "text n" for cells that are not values, then "last" for empty cells.
+<code>runSortTests()</code> in the console checks every table both ways.</p>
+<p id="summary" class="result"></p>
+<div id="cases"></div>
+<script>
+( function () {
+	var lang = new URLSearchParams( location.search ).get( 'lang' ) || 'en-US';
+	document.documentElement.lang = lang;
+
+	function expectedText( cell ) {
+		var kind = cell[ 2 ] || 'v';
+		return 'e' === kind ? 'last' : ( 'o' === kind ? 'text ' + cell[ 1 ] : String( cell[ 1 ] ) );
+	}
+
+	function build( cases ) {
+		var root = document.getElementById( 'cases' );
+		cases.filter( function ( c ) {
+			return ( c.lang || 'en-US' ) === lang;
+		} ).forEach( function ( c ) {
+			var h = document.createElement( 'h2' );
+			h.textContent = c.title;
+			root.appendChild( h );
+			var figure = document.createElement( 'figure' );
+			figure.className = 'wp-block-table';
+			var table = document.createElement( 'table' );
+			table.className = 'table-block-sort';
+			table.innerHTML = '<thead><tr><th>Value</th><th>Expected</th></tr></thead><tbody></tbody>';
+			c.cells.forEach( function ( cell ) {
+				var tr = document.createElement( 'tr' );
+				var a = document.createElement( 'td' );
+				var b = document.createElement( 'td' );
+				a.textContent = cell[ 0 ];
+				b.textContent = expectedText( cell );
+				tr.appendChild( a );
+				tr.appendChild( b );
+				table.tBodies[ 0 ].appendChild( tr );
+			} );
+			figure.appendChild( table );
+			root.appendChild( figure );
+		} );
+	}
+
+	fetch( 'sort-cases.json' ).then( function ( r ) {
+		return r.json();
+	} ).then( function ( cases ) {
+		build( cases );
+		var script = document.createElement( 'script' );
+		script.src = '../assets/view.js?' + Date.now();
+		script.onload = function () {
+			var results = window.runSortTests();
+			var failed = results.filter( function ( r ) {
+				return ! r.pass;
+			} );
+			var summary = document.getElementById( 'summary' );
+			summary.textContent = lang + ': ' + ( results.length - failed.length ) + ' of ' + results.length + ' checks pass';
+			summary.className = 'result ' + ( failed.length ? 'fail' : 'pass' );
+		};
+		document.body.appendChild( script );
+	} );
+} )();
+</script>
+<script src="sort-check.js"></script>
+</body>
+</html>

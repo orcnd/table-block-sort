@@ -1,0 +1,11 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/tables/",
+  "preferredVersions": { "php": "8.2", "wp": "latest" },
+  "steps": [
+    { "step": "login", "username": "admin", "password": "password" },
+    { "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "plugin-check" } },
+    { "step": "activatePlugin", "pluginPath": "table-block-sort/table-block-sort.php" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/verify/setup.php';" }
+  ]
+}

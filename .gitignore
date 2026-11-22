@@ -1,0 +1,5 @@
+dist/
+scratch/
+docs/ai/
+verify/.playground/
+.DS_Store
