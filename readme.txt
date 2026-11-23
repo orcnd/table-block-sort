@@ -19,11 +19,11 @@ Select a table. Its toolbar gets four buttons next to "Edit table": sort (two ar
 * **Sortable columns:** on the page, each header cell becomes a button. The first click sorts the column from low to high, the next click from high to low.
 * **Search box:** a search field at the left above the table. It is WordPress' own Search block field, so it looks like every other search field in your theme. The matching text is highlighted in the browser's own highlight color. While visitors type, rows that do not match are hidden and the number of matching rows is shown. Upper and lower case and accents are ignored, so "cafe" finds "Café".
 * **Striped rows:** every other row gets a shaded background. This is the Table block's own "Stripes" style, so the switch and the Styles panel always agree. The stripes stay correct after sorting and searching, and their shade is mixed from the theme's text color, so they also work on dark themes.
-* **Download button:** a download icon at the right above the table (its label, "Download CSV", shows on hover and is read by screen readers). It uses the theme's text color.
+* **Download button:** a download icon at the right above the table (its label, "Download CSV", shows on hover and is read by screen readers). It uses the theme's text color. Visitors get the table as they see it: in their sort order and only the rows that match their search. The file opens in Excel, Numbers, LibreOffice and Google Sheets with accents intact, and is named after the table caption.
 * **Cards on phones:** on screens narrower than 600 pixels each row becomes a card, with the column name next to each value. No more sideways scrolling. Sorting moves to a sort icon above the table: it opens a short menu with each column name and an up and a down arrow.
 * **Sticky header:** the header row stays in view while visitors scroll down a long table, below the admin bar when it shows. It takes the theme's background color.
 * **Show more button:** only the first rows show (you pick how many, 3 to 100), with a "Show more" button and "Showing 10 of 40 rows" under the table. Search, sorting and the download still use every row.
-* **Share button:** a share icon next to the download icon. The sort and the search are kept in the page address (for example `?table1-sort=price&table1-order=desc`); the icon opens the share sheet on phones and copies that link elsewhere ("Link copied"). Opening the link shows the table the same way. Visitors get the table as they see it: in their sort order and only the rows that match their search. The file opens in Excel, Numbers, LibreOffice and Google Sheets with accents intact, and is named after the table caption.
+* **Share button:** a share icon next to the download icon. The sort and the search are kept in the page address (for example `?table1-sort=price&table1-order=desc`); the icon opens the share sheet on phones and copies that link elsewhere ("Link copied"). Opening the link shows the table the same way.
 
 **How columns are sorted**
 
@@ -38,7 +38,7 @@ Each column is checked as a whole. When more than half of its cells are dates, i
 
 **Accessible**
 
-The sort buttons work with the keyboard (Tab, then Enter or Space). The sorted column is announced to screen readers with `aria-sort`, following the WAI-ARIA sortable table pattern. The search field has a visible label, the download icon has a text label for screen readers, and the number of matching rows is announced as it changes. The arrow follows the theme's text color and stays visible in Windows high-contrast mode.
+The sort buttons work with the keyboard (Tab, then Enter or Space). The sorted column is announced to screen readers with `aria-sort`, following the WAI-ARIA sortable table pattern. The search field and the download icon have text labels for screen readers, and the number of matching rows is announced as it changes. The arrow follows the theme's text color and stays visible in Windows high-contrast mode.
 
 **What it does not do**
 
