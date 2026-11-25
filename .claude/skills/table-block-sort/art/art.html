@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	* { box-sizing: border-box; margin: 0; padding: 0; }
+	body { background: transparent; font-family: -apple-system, "Inter", "Segoe UI", Helvetica, Arial, sans-serif; }
+	:root { --ink: #1d2433; --paper: #f7f4ee; --accent: #e0662f; --line: #d9d3c7; --stripe: #ece6da; }
+
+	/* Banner 772 x 250 (the 1544 x 500 one is the same at scale 2). */
+	.banner { width: 772px; height: 250px; background: var(--ink); color: var(--paper); position: relative; overflow: hidden; display: flex; align-items: flex-start; padding: 34px 40px 0 40px; gap: 28px; }
+	.banner h1 { white-space: nowrap; font-size: 38px; font-weight: 800; letter-spacing: -1.2px; line-height: 1; }
+	.banner p { margin-top: 12px; font-size: 17px; line-height: 1.4; color: #c9cfdb; max-width: 330px; }
+	.banner .chips { margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; max-width: 320px; }
+	.banner .chips span { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border: 1px solid #3a4459; border-radius: 99px; color: #dfe3ea; }
+	.card { flex: none; margin-left: auto; width: 310px; background: var(--paper); color: var(--ink); border-radius: 10px; box-shadow: 0 18px 40px rgba(0,0,0,.35); padding: 14px 16px 10px; transform: rotate(-2deg) translateY(4px); }
+	.bar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+	.search { flex: 1; height: 26px; border: 1.5px solid var(--line); border-radius: 99px; display: flex; align-items: center; padding: 0 10px; font-size: 12px; color: #8a8f99; gap: 6px; }
+	.icon { width: 22px; height: 22px; fill: var(--ink); }
+	table { width: 100%; border-collapse: collapse; font-size: 13px; }
+	th { text-align: left; font-weight: 800; padding: 6px 6px; border-bottom: 2.5px solid var(--ink); white-space: nowrap; }
+	th .arrow { display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #b9b3a7; margin-left: 4px; vertical-align: middle; }
+	th.on { color: var(--accent); }
+	th.on .arrow { border-top: 0; border-bottom: 5px solid var(--accent); }
+	td { padding: 6px 6px; }
+	tr:nth-child(odd) td { background: var(--stripe); }
+	mark { background: #ffd84d; color: inherit; padding: 0 1px; }
+
+	/* Icon 256 x 256 (128 is the same at half scale). */
+	.appicon { width: 256px; height: 256px; background: var(--ink); border-radius: 0; display: flex; align-items: center; justify-content: center; }
+	.appicon .grid { width: 168px; background: var(--paper); border-radius: 18px; padding: 16px; display: grid; gap: 10px; }
+	.appicon .row { height: 22px; border-radius: 6px; background: var(--stripe); display: flex; align-items: center; }
+	.appicon .row.head { background: transparent; border-bottom: 5px solid var(--ink); border-radius: 0; height: 26px; }
+	.appicon .row.mid { background: transparent; }
+	.appicon .tri { width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent; border-bottom: 16px solid var(--accent); margin-left: 6px; }
+	.appicon .row .pill { height: 8px; border-radius: 4px; background: var(--ink); opacity: .75; margin-left: 10px; }
+</style>
+</head>
+<body>
+<div id="banner" class="banner">
+	<div>
+		<h1>Table Block Sort</h1>
+		<p>Sorting, search, CSV download and phone cards for the Table block you already use.</p>
+		
+	</div>
+	<div class="card">
+		<div class="bar">
+			<div class="search"><svg class="icon" style="width:14px;height:14px;fill:#8a8f99" viewBox="0 0 24 24"><path d="M13 5c-3.3 0-6 2.7-6 6 0 1.4.5 2.7 1.3 3.7l-3.8 3.8 1.1 1.1 3.8-3.8c1 .8 2.3 1.3 3.7 1.3 3.3 0 6-2.7 6-6S16.3 5 13 5Zm0 10.5c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5Z"/></svg>cake</div>
+			<svg class="icon" viewBox="0 0 24 24"><path d="M18 11.3l-1-1.1-4 4V3h-1.5v11.3L7 10.2l-1 1.1 6.2 5.8 5.8-5.8zm.5 3.7v3.5h-13V15H4v5h16v-5h-1.5z"/></svg>
+			<svg class="icon" viewBox="0 0 24 24"><path d="M9 11.8l6.1-4.5c.1.4.4.7.9.7h2c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1h-2c-.6 0-1 .4-1 1v.4l-6.4 4.8c-.2-.1-.4-.2-.6-.2H6c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h2c.2 0 .4-.1.6-.2l6.4 4.8v.4c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1h-2c-.5 0-.8.3-.9.7L9 12.2v-.4z"/></svg>
+		</div>
+		<table>
+			<thead><tr><th>Item<span class="arrow"></span></th><th>Category<span class="arrow"></span></th><th class="on">Price<span class="arrow"></span></th></tr></thead>
+			<tbody>
+				<tr><td>Cup<mark>cake</mark></td><td>Bakery</td><td>$2.20</td></tr>
+				<tr><td>Carrot <mark>cake</mark></td><td>Bakery</td><td>$4.50</td></tr>
+				<tr><td>Cheese<mark>cake</mark></td><td>Desserts</td><td>$5.90</td></tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div style="height:40px"></div>
+<div id="icon" class="appicon">
+	<div class="grid">
+		<div class="row head"><div class="tri"></div></div>
+		<div class="row"><div class="pill" style="width:70px"></div></div>
+		<div class="row mid"><div class="pill" style="width:100px"></div></div>
+		<div class="row"><div class="pill" style="width:50px"></div></div>
+	</div>
+</div>
+</body>
+</html>
